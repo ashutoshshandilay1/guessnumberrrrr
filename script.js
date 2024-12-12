@@ -79,20 +79,22 @@ if (!canPlay()) {
   checkBtnEl.addEventListener("click", () => {
     let inputValue = parseInt(inputEl.value); // Ensure input is treated as a number
 
-    // Reset game if button says "Play Again"
-    if (checkBtnEl.textContent === "Play Again...😉") {
-      resetGame();
-      return;
-    }
-
     totalChances--;
 
-    // Dynamically adjust randomNumber to make it impossible to win
     if (inputValue === randomNumber) {
-      randomNumber = (randomNumber % 100) + 1; // Shift random number by 1
-    }
+      inputEl.disabled = true;
+      guessEl.textContent = "Hurrah...! Congratulations😍, You won the game.";
+      guessEl.style.color = "green";
+      checkBtnEl.textContent = "Play Again...😉";
+      showPopup(); // Show popup on win
+      recordPlayTime(); // Record the play time
+      startCountdown(); // Start countdown after recording
 
-    if (totalChances === 0) {
+      // Refresh page after 5 seconds
+      setTimeout(() => {
+        window.location.reload();
+      }, 5000);
+    } else if (totalChances === 0) {
       inputEl.disabled = true;
       guessEl.textContent = "Oops...! Bad luck😥, You lost the game.";
       guessEl.style.color = "red";
@@ -100,6 +102,11 @@ if (!canPlay()) {
       remainingChancesTextEl.textContent = "No chances left";
       recordPlayTime(); // Record the play time
       startCountdown(); // Start countdown after recording
+
+      // Refresh page after 5 seconds
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     } else if (inputValue > randomNumber) {
       guessEl.textContent = "Your Guess is High👍.";
       guessEl.style.color = "#1446a0";
@@ -144,4 +151,4 @@ closePopupBtnEl.addEventListener("click", () => {
 });
 
 copyCodeBtnEl.addEventListener("click", copyToClipboard);
-console.log(randomNumber)
+
