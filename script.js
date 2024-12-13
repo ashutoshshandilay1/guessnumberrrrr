@@ -136,7 +136,7 @@ const resetGame = () => {
 
 const showPopup = () => {
   popupEl.style.display = "flex"; // Use flex to center the popup
-  popupCodeEl.textContent = "INR 10 Redeem Code: B9UA KN7M CY6V 1TCP";
+  popupCodeEl.textContent = "INR 10 Redeem Code: 0AF2 21DG YZJN NKUJ";
 };
 
 const copyToClipboard = () => {
