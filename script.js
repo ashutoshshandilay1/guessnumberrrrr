@@ -80,6 +80,7 @@ if (!canPlay()) {
     let inputValue = parseInt(inputEl.value); // Ensure input is treated as a number
 
     totalChances--;
+    randomNumber = Math.floor(Math.random() * 100) + 1; // Regenerate random number on every click
 
     if (inputValue === randomNumber) {
       inputEl.disabled = true;
@@ -90,10 +91,10 @@ if (!canPlay()) {
       recordPlayTime(); // Record the play time
       startCountdown(); // Start countdown after recording
 
-      // Refresh page after 5 seconds
+      // Refresh page after 1 second
       setTimeout(() => {
         window.location.reload();
-      }, 5000);
+      }, 1000);
     } else if (totalChances === 0) {
       inputEl.disabled = true;
       guessEl.textContent = "Oops...! Bad luck😥, You lost the game.";
@@ -106,7 +107,7 @@ if (!canPlay()) {
       // Refresh page after 5 seconds
       setTimeout(() => {
         window.location.reload();
-      }, 1000);
+      }, 5000);
     } else if (inputValue > randomNumber) {
       guessEl.textContent = "Your Guess is High👍.";
       guessEl.style.color = "#1446a0";
@@ -135,7 +136,7 @@ const resetGame = () => {
 
 const showPopup = () => {
   popupEl.style.display = "flex"; // Use flex to center the popup
-  popupCodeEl.textContent = "INR 30 Redeem Code: ASDF SDAF SFFD FDSF";
+  popupCodeEl.textContent = "INR 10 Redeem Code: B9UA KN7M CY6V 1TCP";
 };
 
 const copyToClipboard = () => {
@@ -151,4 +152,3 @@ closePopupBtnEl.addEventListener("click", () => {
 });
 
 copyCodeBtnEl.addEventListener("click", copyToClipboard);
-
